@@ -2,41 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+/* Professional Architecture Consultancy Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core brand colors */
+    --background: 0 0% 99%;
+    --foreground: 210 24% 16%;
 
+    /* Professional charcoal and warm whites */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 24% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 24% 16%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Sophisticated charcoal primary */
+    --primary: 210 24% 16%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Warm secondary tones */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 24% 16%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Elegant muted tones */
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Teal accent for CTAs and highlights */
+    --accent: 184 81% 29%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Professional teal variant */
+    --accent-light: 184 65% 85%;
+    --accent-dark: 184 81% 20%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --radius: 0.5rem;
+    --border: 215 28% 89%;
+    --input: 215 28% 89%;
+    --ring: 184 81% 29%;
+
+    /* Professional gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(210 24% 16% / 0.95), hsl(210 24% 8% / 0.9));
+    --gradient-overlay: linear-gradient(180deg, hsl(210 24% 16% / 0.8), hsl(210 24% 16% / 0.4));
+    --gradient-accent: linear-gradient(135deg, hsl(184 81% 29%), hsl(184 81% 35%));
+
+    /* Professional shadows */
+    --shadow-elegant: 0 25px 50px -12px hsl(210 24% 16% / 0.25);
+    --shadow-card: 0 4px 12px hsl(210 24% 16% / 0.1);
+    --shadow-glow: 0 0 30px hsl(184 81% 29% / 0.3);
+
+    /* Smooth transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +118,125 @@ All colors MUST be HSL.
   }
 }
 
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat font-semibold;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* Hero variants for professional presentation */
+  .hero-primary {
+    @apply bg-gradient-to-br from-primary to-primary/80 text-primary-foreground;
+  }
+
+  .hero-overlay {
+    background: var(--gradient-hero);
+  }
+
+  /* Professional button variants */
+  .btn-cta {
+    @apply bg-gradient-to-r from-accent to-accent-dark text-accent-foreground px-8 py-4 rounded-lg font-medium transition-all duration-300 hover:shadow-[var(--shadow-glow)] hover:scale-105;
+  }
+
+  .btn-outline-professional {
+    @apply border-2 border-accent text-accent bg-transparent px-8 py-4 rounded-lg font-medium transition-all duration-300 hover:bg-accent hover:text-accent-foreground;
+  }
+
+  /* Card variants for professional sections */
+  .card-elegant {
+    @apply bg-card border border-border rounded-xl shadow-[var(--shadow-card)] transition-all duration-300 hover:shadow-[var(--shadow-elegant)];
+  }
+
+  .card-service {
+    @apply card-elegant p-8 group cursor-pointer hover:scale-105;
+  }
+
+  /* Professional section spacing */
+  .section-padding {
+    @apply px-4 py-16 sm:px-6 lg:px-8 lg:py-24;
+  }
+
+  /* Parallax and animation utilities */
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .fade-in-up {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+
+  .fade-in-up.animate {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .slide-in-left {
+    @apply opacity-0 -translate-x-8 transition-all duration-700 ease-out;
+  }
+
+  .slide-in-left.animate {
+    @apply opacity-100 translate-x-0;
+  }
+
+  .slide-in-right {
+    @apply opacity-0 translate-x-8 transition-all duration-700 ease-out;
+  }
+
+  .slide-in-right.animate {
+    @apply opacity-100 translate-x-0;
+  }
+
+  /* Professional overlay effects */
+  .overlay-gradient {
+    background: var(--gradient-overlay);
+  }
+
+  .overlay-accent {
+    background: linear-gradient(135deg, hsl(184 81% 29% / 0.9), hsl(184 81% 20% / 0.8));
+  }
+
+  /* Counter animation styles */
+  .counter-animate {
+    @apply tabular-nums;
+  }
+
+  /* Professional navigation */
+  .nav-link {
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-300 relative;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Image overlay effects for projects */
+  .project-overlay {
+    @apply absolute inset-0 bg-primary/80 opacity-0 transition-opacity duration-300 flex items-center justify-center;
+  }
+
+  .project-card:hover .project-overlay {
+    @apply opacity-100;
   }
 }
