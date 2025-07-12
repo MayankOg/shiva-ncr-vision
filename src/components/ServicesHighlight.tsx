@@ -68,7 +68,7 @@ const ServicesHighlight = () => {
           {services.map((service, index) => (
             <div
               key={service.title}
-              className={`card-service transition-all duration-700 ${
+              className={`card-service group transition-all duration-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: service.delay }}

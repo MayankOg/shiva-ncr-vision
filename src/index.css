@@ -162,7 +162,7 @@
   }
 
   .card-service {
-    @apply card-elegant p-8 group cursor-pointer hover:scale-105;
+    @apply card-elegant p-8 cursor-pointer hover:scale-105;
   }
 
   /* Professional section spacing */
