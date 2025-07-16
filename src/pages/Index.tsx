@@ -2,7 +2,6 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import ServicesHighlight from '../components/ServicesHighlight';
 import AnimatedCounters from '../components/AnimatedCounters';
-import FeaturedProjects from '../components/FeaturedProjects';
 import TestimonialsSection from '../components/TestimonialsSection';
 import NewsletterSection from '../components/NewsletterSection';
 import Footer from '../components/Footer';
@@ -14,7 +13,6 @@ const Index = () => {
       <HeroSection />
       <ServicesHighlight />
       <AnimatedCounters />
-      <FeaturedProjects />
       <TestimonialsSection />
       <NewsletterSection />
       <Footer />

@@ -21,7 +21,6 @@ const Footer = () => {
   const quickLinks = {
     'About Us': [
       { name: 'Our Story', href: '/about' },
-      { name: 'Team', href: '/team' },
       { name: 'Careers', href: '/careers' }
     ],
     'Services': [
@@ -44,17 +43,10 @@ const Footer = () => {
 
   const offices = [
     {
-      name: 'Headquarters',
-      address: '123 NCR Tower Road, Sector 14, Gurugram, Haryana',
-      phone: '+91 124 XXXX XXXX',
+      name: 'Main Office',
+      address: 'Shop No 3, Mathura Road, Opposite Bijalighar, Hathras Dehat, Hathras, Uttar Pradesh, 204101',
+      phone: '+91 XXXX XXXX',
       email: 'info@shivancrconsultants.com',
-      hours: 'Mon–Sat, 9 AM–6 PM IST'
-    },
-    {
-      name: 'Delhi Branch',
-      address: '45 Mall Road, Central Delhi, New Delhi, 110001',
-      phone: '+91 11 XXXX XXXX',
-      email: 'delhi@shivancrconsultants.com',
       hours: 'Mon–Sat, 9 AM–6 PM IST'
     }
   ];
@@ -125,32 +117,34 @@ const Footer = () => {
             ))}
           </div>
 
-          {/* Office Locations */}
+          {/* Office Location */}
           <div className="mt-16 pt-8 border-t border-primary-foreground/20">
-            <h4 className="text-xl font-semibold mb-8 text-center">Our Offices</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {offices.map((office) => (
-                <div key={office.name} className="bg-primary-foreground/5 rounded-lg p-6">
-                  <h5 className="font-semibold text-accent mb-4">{office.name}</h5>
-                  <div className="space-y-3 text-primary-foreground/80">
-                    <div className="flex items-start space-x-3">
-                      <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                      <span className="text-sm">{office.address}</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Phone className="w-5 h-5 text-accent flex-shrink-0" />
-                      <span className="text-sm">{office.phone}</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Mail className="w-5 h-5 text-accent flex-shrink-0" />
-                      <span className="text-sm">{office.email}</span>
-                    </div>
-                    <div className="text-sm text-primary-foreground/60">
-                      {office.hours}
+            <h4 className="text-xl font-semibold mb-8 text-center">Our Office</h4>
+            <div className="flex justify-center">
+              <div className="max-w-md w-full">
+                {offices.map((office) => (
+                  <div key={office.name} className="bg-primary-foreground/5 rounded-lg p-6">
+                    <h5 className="font-semibold text-accent mb-4">{office.name}</h5>
+                    <div className="space-y-3 text-primary-foreground/80">
+                      <div className="flex items-start space-x-3">
+                        <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">{office.address}</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Phone className="w-5 h-5 text-accent flex-shrink-0" />
+                        <span className="text-sm">{office.phone}</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Mail className="w-5 h-5 text-accent flex-shrink-0" />
+                        <span className="text-sm">{office.email}</span>
+                      </div>
+                      <div className="text-sm text-primary-foreground/60">
+                        {office.hours}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

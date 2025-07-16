@@ -214,51 +214,28 @@ const Contact = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               
-              {/* Office Locations */}
+              {/* Office Location */}
               <div className="card-elegant p-8">
                 <h3 className="text-2xl font-montserrat font-semibold text-foreground mb-6">
-                  Our Offices
+                  Our Office
                 </h3>
                 
-                <div className="space-y-8">
-                  {/* Headquarters */}
-                  <div>
-                    <h4 className="font-semibold text-accent mb-3">Headquarters</h4>
-                    <div className="space-y-2 text-muted-foreground">
-                      <div className="flex items-start space-x-3">
-                        <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>123 NCR Tower Road, Sector 14, Gurugram, Haryana</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Phone className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>+91 124 XXXX XXXX</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Mail className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>info@shivancrconsultants.com</span>
-                      </div>
-                      <div className="text-sm">Mon–Sat, 9 AM–6 PM IST</div>
+                <div>
+                  <h4 className="font-semibold text-accent mb-3">Main Office</h4>
+                  <div className="space-y-2 text-muted-foreground">
+                    <div className="flex items-start space-x-3">
+                      <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                      <span>Shop No 3, Mathura Road, Opposite Bijalighar, Hathras Dehat, Hathras, Uttar Pradesh, 204101</span>
                     </div>
-                  </div>
-
-                  {/* Delhi Branch */}
-                  <div>
-                    <h4 className="font-semibold text-accent mb-3">Delhi Branch</h4>
-                    <div className="space-y-2 text-muted-foreground">
-                      <div className="flex items-start space-x-3">
-                        <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>45 Mall Road, Central Delhi, New Delhi, 110001</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Phone className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>+91 11 XXXX XXXX</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Mail className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span>delhi@shivancrconsultants.com</span>
-                      </div>
-                      <div className="text-sm">Mon–Sat, 9 AM–6 PM IST</div>
+                    <div className="flex items-center space-x-3">
+                      <Phone className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span>+91 XXXX XXXX</span>
                     </div>
+                    <div className="flex items-center space-x-3">
+                      <Mail className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span>info@shivancrconsultants.com</span>
+                    </div>
+                    <div className="text-sm">Mon–Sat, 9 AM–6 PM IST</div>
                   </div>
                 </div>
               </div>
