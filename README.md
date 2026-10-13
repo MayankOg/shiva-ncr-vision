@@ -15,4 +15,4 @@ Set as GitHub Actions repository **variables** (or `.env`, see `.env.example`):
 - `VITE_CONTACT_EMAIL`, `VITE_CONTACT_PHONE`, `VITE_WHATSAPP_NUMBER` — shown as marked placeholders until set.
 
 ## Placeholders to replace
-Selected work case studies, contact details, WhatsApp number, OG image (currently a hero screenshot), base path `/shiva-ncr-site/` in `vite.config.ts`, `index.html`, `site.ts`, sitemap/robots when moving to a custom domain.
+Testimonials (`testimonials` array in `src/content/content.ts`; section + nav link hidden while empty), contact details, WhatsApp number, OG image (currently a hero screenshot), base path `/shiva-ncr-site/` in `vite.config.ts`, `index.html`, `site.ts`, sitemap/robots when moving to a custom domain.

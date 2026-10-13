@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Journey from '../components/Journey'
 import Contact from '../components/Contact'
-import { services, work, steps, reasons, problems, solutionSteps } from '../content/content'
+import { services, testimonials, steps, reasons, problems, solutionSteps } from '../content/content'
 import { useSeo } from '../components/useSeo'
 
 export default function Home() {
@@ -57,25 +57,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section work" id="work" aria-labelledby="work-title">
-        <div className="wrap">
-          <div className="sec-head">
-            <p className="eyebrow">Selected work</p>
-            <h2 id="work-title" className="h2">Technology built around real business needs.</h2>
-            <p className="ph-note">Placeholder section — case studies will be added once client approval is in place.</p>
+      {testimonials.length > 0 && (
+        <section className="section testimonials" id="testimonials" aria-labelledby="tm-title">
+          <div className="wrap">
+            <p className="eyebrow">Testimonials</p>
+            <h2 id="tm-title" className="h2">In our clients’ words.</h2>
+            <div className="quotes">
+              {testimonials.map((t, i) => (
+                <figure key={i} className="quote">
+                  <blockquote><p>{t.quote}</p></blockquote>
+                  <figcaption><b>{t.name}</b>{(t.role || t.company) && <span>{[t.role, t.company].filter(Boolean).join(', ')}</span>}</figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
-          <div className="work-grid">
-            {work.map((w, i) => (
-              <article key={i} className={`work-card ${w.placeholder ? 'is-ph' : ''}`}>
-                <div className="work-visual" aria-hidden="true"><span /><span /><span /></div>
-                <p className="work-tag">{w.tag}</p>
-                <h3>{w.title}</h3>
-                <p>{w.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="section approach" id="approach" aria-labelledby="ap-title">
         <div className="wrap">

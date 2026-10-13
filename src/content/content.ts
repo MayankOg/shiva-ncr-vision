@@ -57,12 +57,9 @@ export const services: Service[] = [
     forWho: 'Founders, SMEs and enterprise teams planning a new system or modernising an old one.' },
 ]
 
-// Selected work — PLACEHOLDERS. Replace with real, client-approved projects. No invented results.
-export const work = [
-  { tag: 'Property operations', title: 'Co-living management platform', desc: 'Concept build: operator dashboard and resident app for beds, rent, KYC and maintenance.', placeholder: true },
-  { tag: 'Automation', title: 'Case study placeholder', desc: 'Add a real automation or integration project here with client approval.', placeholder: true },
-  { tag: 'Digital growth', title: 'Case study placeholder', desc: 'Add a real marketing or SEO engagement here with client approval.', placeholder: true },
-]
+// Testimonials — add real, client-approved quotes only. While empty, the section and its nav link are hidden.
+export type Testimonial = { quote: string; name: string; role?: string; company?: string }
+export const testimonials: Testimonial[] = []
 
 export const steps = [
   { n: '01', t: 'Discover', d: 'Conversations, process mapping and a systems review to understand the real problem.' },

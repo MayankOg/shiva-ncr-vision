@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
+import { testimonials } from '../content/content'
 
 const links = [
   { href: '/#services', label: 'Services' },
   { href: '/#approach', label: 'Our Approach' },
-  { href: '/#work', label: 'Work' },
+  ...(testimonials.length ? [{ href: '/#testimonials', label: 'Testimonials' }] : []),
   { href: '/#about', label: 'About' },
 ]
 
