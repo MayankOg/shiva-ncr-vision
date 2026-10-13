@@ -59,7 +59,12 @@ export const services: Service[] = [
 
 // Testimonials — add real, client-approved quotes only. While empty, the section and its nav link are hidden.
 export type Testimonial = { quote: string; name: string; role?: string; company?: string }
-export const testimonials: Testimonial[] = []
+export const testimonials: Testimonial[] = [
+  { quote: 'We grew weekday occupancy from 23% to 61%.', name: 'Anil Bhrane', company: 'Hotel The Tree' },
+  { quote: 'I don’t visit my PG chain for weeks, and yet I have my reports on my app.', name: 'Sameer Shinde', company: 'Krishnakunj (PG chain)' },
+  { quote: 'Our app console has been optimally managed, increasing downloads by 2000%.', name: 'Ruslana Yatsenko' },
+  { quote: 'Our ASO work brought our app into the top 50 of the Apple App Store charts.', name: 'Natalia Shyprka' },
+]
 
 export const steps = [
   { n: '01', t: 'Discover', d: 'Conversations, process mapping and a systems review to understand the real problem.' },
