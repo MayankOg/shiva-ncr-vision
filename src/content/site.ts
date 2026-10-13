@@ -11,5 +11,5 @@ export const site = {
   whatsapp: import.meta.env.VITE_WHATSAPP_NUMBER || '918448712108', // international format digits only, e.g. 919XXXXXXXXX
   location: 'R9, Life Republic, Pune',
   // Enquiry form endpoint (e.g. Formspree https://formspree.io/f/xxxx). Empty = not configured.
-  formEndpoint: import.meta.env.VITE_FORM_ENDPOINT || '',
+  formEndpoint: import.meta.env.VITE_FORM_ENDPOINT || 'https://formspree.io/f/xjygennd',
 }

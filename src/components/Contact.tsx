@@ -82,7 +82,7 @@ export default function Contact() {
           <button className="btn btn-primary" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send enquiry'}</button>
           <div id="form-status" role="status" aria-live="polite">
             {status === 'sent' && <p className="note ok">Thank you — your enquiry was received. We'll be in touch soon.</p>}
-            {status === 'error' && <p className="note bad">Sorry, your enquiry could not be sent. Please try again{site.email ? <> or email <a href={`mailto:${site.email}`}>{site.email}</a></> : ''}.</p>}
+            {status === 'error' && <div className="note bad"><p>Sorry, your enquiry could not be sent. Please try again or send it by email.</p>{mailto && <div className="note-actions"><a className="btn btn-ghost" href={mailto}>Send via email instead</a></div>}</div>}
             {status === 'unconfigured' && (
               <div className="note warn">
                 <p><strong>Your enquiry has not been sent.</strong> Online submission isn't connected on this preview yet.</p>
