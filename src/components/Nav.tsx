@@ -4,9 +4,9 @@ import Logo from './Logo'
 
 const links = [
   { href: '/#services', label: 'Services' },
-  { href: '/#approach', label: 'Approach' },
+  { href: '/#approach', label: 'Our Approach' },
   { href: '/#work', label: 'Work' },
-  { href: '/#why', label: 'Why us' },
+  { href: '/#about', label: 'About' },
 ]
 
 export default function Nav() {
@@ -32,7 +32,7 @@ export default function Nav() {
         <nav aria-label="Primary" className="nav-links">
           {links.map((l) => <Link key={l.href} to={l.href}>{l.label}</Link>)}
         </nav>
-        <Link to="/#contact" className="btn btn-primary nav-cta">Start a project</Link>
+        <Link to="/#contact" className="btn btn-primary nav-cta">Discuss your project</Link>
         <button className="menu-btn" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
           <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
           <span className={`burger ${open ? 'is-open' : ''}`} aria-hidden="true"><i /><i /></span>
@@ -41,7 +41,7 @@ export default function Nav() {
       <div id="mobile-menu" className={`mobile-menu ${open ? 'is-open' : ''}`} hidden={!open}>
         <nav aria-label="Mobile">
           {links.map((l, i) => <Link key={l.href} to={l.href} style={{ transitionDelay: `${i * 40}ms` }}>{l.label}</Link>)}
-          <Link to="/#contact" className="btn btn-primary">Start a project</Link>
+          <Link to="/#contact" className="btn btn-primary">Discuss your project</Link>
         </nav>
       </div>
     </header>

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { services } from '../content/content'
+const serviceOptions = ['Software development', 'AI and automation', 'IT consulting or integrations', 'Infrastructure and engineering', 'Digital marketing', 'Multiple services', 'Other']
 import { site } from '../content/site'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error' | 'unconfigured'
@@ -25,7 +25,7 @@ export default function Contact() {
       const first = e.currentTarget.querySelector<HTMLElement>(`[name="${Object.keys(er)[0]}"]`); first?.focus(); return
     }
     if (data.website) return // honeypot
-    const text = `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company || '-'}\nInterest: ${data.service || '-'}\nTimeline: ${data.timeline || '-'}\n\n${data.message}`
+    const text = `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company || '-'}\nInterest: ${data.service || '-'}\nBudget: ${data.budget || '-'}\nPreferred contact: ${data.contactMethod || '-'}\nPhone: ${data.phone || '-'}\n\n${data.message}`
     setSummary(text)
     if (!site.formEndpoint) { setStatus('unconfigured'); return }
     setStatus('sending')
@@ -43,14 +43,20 @@ export default function Contact() {
     <section className="contact" id="contact" aria-labelledby="contact-title">
       <div className="wrap contact-grid">
         <div className="contact-intro">
-          <p className="eyebrow light">Start a project</p>
-          <h2 id="contact-title">Tell us about the problem. <em>We'll help you find the right solution.</em></h2>
-          <p>Share a few details about your business and what you want to achieve. We'll come back with questions, an initial view and suggested next steps — no obligation.</p>
+          <p className="eyebrow light">Discuss your project</p>
+          <h2 id="contact-title">Let’s solve the <em>right problem first.</em></h2>
+          <p>Tell us what you are trying to build, improve, or automate. We’ll start with the challenge and explore the right way forward.</p>
+          <div className="hero-ctas cta-dark">
+            <a href="#name" className="btn btn-light">Discuss your project</a>
+            {site.whatsapp && <a className="btn btn-ghost-light" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer">Contact us on WhatsApp</a>}
+          </div>
           <ul className="contact-list">
             <li><span>What happens next</span>An initial conversation to understand your goals</li>
             <li><span>Then</span>A short written recommendation and scope</li>
-            <li><span>Reach us</span>{site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span className="ph">[Email — to be added]</span>}</li>
-            {site.whatsapp && <li><span>WhatsApp</span><a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></li>}
+            <li><span>Contact</span>{site.contactPerson} · <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a></li>
+            <li><span>Location</span>{site.location}</li>
+            <li><span>Email</span>{site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span className="ph">[Email — to be added]</span>}</li>
+            
           </ul>
         </div>
         <form className="form" noValidate onSubmit={onSubmit} aria-describedby="form-status">
@@ -59,12 +65,17 @@ export default function Contact() {
             <div className="field"><label htmlFor="email">Work email *</label><input id="email" name="email" type="email" autoComplete="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'email-err' : undefined} />{err('email')}</div>
           </div>
           <div className="row2">
-            <div className="field"><label htmlFor="company">Company</label><input id="company" name="company" autoComplete="organization" /></div>
+            <div className="field"><label htmlFor="company">Company (optional)</label><input id="company" name="company" autoComplete="organization" /></div>
             <div className="field"><label htmlFor="service">Area of interest</label>
-              <select id="service" name="service" defaultValue=""><option value="">Not sure yet</option>{services.map((s) => <option key={s.slug}>{s.name}</option>)}</select></div>
+              <select id="service" name="service" defaultValue=""><option value="">Select…</option>{serviceOptions.map((o) => <option key={o}>{o}</option>)}</select></div>
           </div>
-          <div className="field"><label htmlFor="timeline">Timeline</label>
-            <select id="timeline" name="timeline" defaultValue=""><option value="">Flexible</option><option>As soon as possible</option><option>1–3 months</option><option>3–6 months</option></select></div>
+          <div className="row2">
+            <div className="field"><label htmlFor="budget">Budget (optional)</label>
+              <select id="budget" name="budget" defaultValue=""><option value="">Prefer not to say</option><option>Under ₹1 lakh</option><option>₹1–5 lakh</option><option>₹5–15 lakh</option><option>Above ₹15 lakh</option><option>Not sure yet</option></select></div>
+            <div className="field"><label htmlFor="contactMethod">Preferred contact method</label>
+              <select id="contactMethod" name="contactMethod" defaultValue="Email"><option>Email</option><option>Phone</option><option>WhatsApp</option></select></div>
+          </div>
+          <div className="field"><label htmlFor="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autoComplete="tel" /></div>
           <div className="field"><label htmlFor="message">Project details *</label><textarea id="message" name="message" rows={5} aria-invalid={!!errors.message} aria-describedby={errors.message ? 'message-err' : undefined} placeholder="What challenge are you trying to solve?" />{err('message')}</div>
           <input className="hp" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <div className="field check"><input id="consent" name="consent" type="checkbox" aria-invalid={!!errors.consent} aria-describedby={errors.consent ? 'consent-err' : undefined} /><label htmlFor="consent">I agree to be contacted about this enquiry.</label>{err('consent')}</div>

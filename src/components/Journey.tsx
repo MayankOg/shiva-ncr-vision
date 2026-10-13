@@ -49,6 +49,11 @@ export default function Journey() {
       <div className="journey-sticky" aria-hidden="true">
         <div className="scene" ref={host} />
         {webgl === false && <Fallback />}
+        <div className={`scene-labels s${active}`}>
+          <span className="lbl l1">Software</span><span className="lbl l2">Integrations</span>
+          <span className="lbl l3">Automation</span><span className="lbl l4">Digital visibility</span>
+          <span className="lbl illus">Illustrative sample data</span>
+        </div>
         <ol className="stage-rail">
           {stages.map((s, i) => <li key={s.id} className={i === active ? 'on' : ''}>{s.id}</li>)}
         </ol>
@@ -56,12 +61,12 @@ export default function Journey() {
 
       <section className="hero" id="top" aria-labelledby="hero-title">
         <div className="wrap hero-inner">
-          <p className="eyebrow">IT consulting · Software · AI &amp; automation · Digital growth</p>
-          <h1 id="hero-title">Your technology partner, <em>from strategy to execution.</em></h1>
-          <p className="lead">We help businesses solve complex technology challenges, build intelligent digital solutions, and connect software with marketing to create lasting business value.</p>
+          <p className="eyebrow">IT consulting · Software · Digital growth</p>
+          <h1 id="hero-title">Your next stage of growth starts with <em>the right systems.</em></h1>
+          <p className="lead">We bring strategy, software, automation, and marketing together to help businesses operate smarter, build better digital experiences, and reach the right customers.</p>
           <div className="hero-ctas">
-            <Link to="/#contact" className="btn btn-primary">Start a project</Link>
-            <Link to="/#services" className="btn btn-ghost">Explore services</Link>
+            <Link to="/#contact" className="btn btn-primary">Discuss your project</Link>
+            <Link to="/#services" className="btn btn-ghost">Explore our capabilities</Link>
           </div>
           <ul className="hero-pillars" aria-label="What we do">
             <li><b>Consult</b><span>Strategy &amp; roadmaps</span></li>
@@ -77,11 +82,12 @@ export default function Journey() {
         {stages.map((s, i) => (
           <section key={s.id} className="stage" data-stage={i} aria-labelledby={`stage-${s.id}`}>
             <div className="wrap">
-              <div className="stage-card">
+              <div className="stage-card" style={{ pointerEvents: 'auto' }}>
                 <p className="stage-label"><span>{s.id}</span> {s.label}</p>
                 <h2 id={`stage-${s.id}`}>{s.title}</h2>
                 <p>{s.body}</p>
-                <ul className="chips">{s.points.map((p) => <li key={p}>{p}</li>)}</ul>
+                {s.points.length > 0 && <ul className={`chips ${s.id === '04' ? 'flow' : ''}`}>{s.points.map((p) => <li key={p} className={p === 'AI assist' ? 'ai' : ''}>{p}</li>)}</ul>}
+                {s.id === '06' && <div className="hero-ctas stage-ctas"><Link to="/#contact" className="btn btn-primary">Discuss your project</Link><Link to="/#services" className="btn btn-ghost">Explore our capabilities</Link></div>}
               </div>
             </div>
           </section>

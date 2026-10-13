@@ -188,3 +188,27 @@ main:focus{outline:none}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
 }
+/* v2 additions */
+.scene-labels{position:absolute;inset:0 0 0 34%}
+.lbl{position:absolute;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--forest);color:var(--ivory);padding:6px 10px;border-radius:6px;opacity:0;transition:opacity .4s}
+.l1{left:12%;top:18%}.l2{right:16%;top:18%}.l3{left:12%;bottom:22%}.l4{right:16%;bottom:22%}
+.s1 .l1,.s1 .l2,.s1 .l3,.s1 .l4{opacity:1}
+.illus{right:16%;top:14%;background:var(--white);color:var(--sage);border:1px dashed var(--sage)}
+.s4 .illus{opacity:1}
+.chips.flow li:not(:last-child)::after{content:'→';margin-left:8px;color:var(--sage)}
+.chips li.ai{background:var(--soft);border-color:var(--sage)}
+.stage-ctas{margin:28px 0 0}
+.challenge{border-top:1px solid var(--stone)}
+.ch-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.ch-note{margin-top:24px;color:var(--muted);max-width:36ch}
+.problems{list-style:none;padding:0;margin:0;border-top:1px solid var(--charcoal)}
+.problems li{display:flex;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--stone);font-size:clamp(19px,1.9vw,24px);font-weight:600;letter-spacing:-.01em}
+.problems span{font-size:13px;font-weight:700;color:var(--sage);min-width:24px}
+.pillars{grid-template-columns:repeat(5,1fr)}
+.pillars h3{font-size:21px}
+.ap-note{margin-top:48px;color:var(--soft);font-size:15px;max-width:60ch}
+.cta-dark{margin:32px 0 0}
+.btn-light{background:var(--ivory);color:var(--forest)}.btn-light:hover{background:var(--soft)}
+.btn-ghost-light{border-color:var(--ivory);color:var(--ivory)}.btn-ghost-light:hover{background:var(--ivory);color:var(--charcoal)}
+@media (max-width:1000px){.ch-grid{grid-template-columns:1fr;gap:32px}.pillars{grid-template-columns:1fr 1fr}.scene-labels{inset:0}.l1,.l3{left:6%}.l2,.l4{right:6%}.l1,.l2{top:16%}.l3,.l4{bottom:auto;top:40%}.illus{top:12%;right:6%}}
+@media (max-width:600px){.pillars{grid-template-columns:1fr}}

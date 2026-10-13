@@ -96,7 +96,7 @@ export class Ecosystem {
         new THREE.Vector3(Math.cos(a) * r * (opts.mobile ? 0.6 : 1), Math.sin(a) * r * 0.62, 1 + tier * 0.4),
         new THREE.Euler(), new THREE.Euler()))
     }
-    this.core = new THREE.Mesh(new THREE.OctahedronGeometry(0.75, 0), new THREE.MeshStandardMaterial({ color: C.forest, flatShading: true, roughness: 0.6 }))
+    this.core = new THREE.Mesh(new THREE.OctahedronGeometry(0.45, 0), new THREE.MeshStandardMaterial({ color: C.forest, flatShading: true, roughness: 0.6 }))
     this.core.scale.setScalar(0.001); this.scene.add(this.core)
     this.ring = new THREE.Mesh(new THREE.TorusGeometry(1.25, 0.025, 8, 96), new THREE.MeshBasicMaterial({ color: C.sage }))
     this.ring.scale.setScalar(0.001); this.scene.add(this.ring)
@@ -151,10 +151,10 @@ export class Ecosystem {
 
   private renderFrame(t: number) {
     const p = this.progress
-    const order = seg(p, 0.12, 0.45)      // chaos -> structure
-    const linkIn = seg(p, 0.45, 0.62)
-    const flow = seg(p, 0.6, 0.75)
-    const outcome = seg(p, 0.8, 0.97)
+    const order = seg(p, 0.2, 0.34)      // chaos -> structure
+    const linkIn = seg(p, 0.4, 0.5)
+    const flow = seg(p, 0.52, 0.62)
+    const outcome = seg(p, 0.7, 0.8)
     const drift = this.opts.reduced ? 0 : 1
     for (const it of [...this.panels, ...this.nodes]) {
       it.obj.position.lerpVectors(it.from, it.to, order)
@@ -165,7 +165,7 @@ export class Ecosystem {
       const mat = (it.obj as THREE.Mesh).material as THREE.MeshBasicMaterial
       mat.opacity = lerp(0.55, 1, order) * (1 - outcome * (i === 7 ? 1 : 0.35))
     })
-    const cs = Math.max(0.001, seg(p, 0.3, 0.5))
+    const cs = Math.max(0.001, seg(p, 0.55, 0.64))
     this.core.scale.setScalar(cs * (1 - outcome * 0.35))
     this.core.rotation.y = t * 0.4 * drift + p * 3
     this.ring.scale.setScalar(Math.max(0.001, linkIn))
@@ -183,7 +183,10 @@ export class Ecosystem {
     this.bars.forEach((b, i) => { b.visible = outcome > 0.01; const hgt = (0.5 + i * 0.28) * outcome; b.scale.y = Math.max(0.001, hgt); b.position.y = -1.2 + hgt / 2 })
     this.scene.rotation.y = lerp(this.scene.rotation.y, this.mouse.x * 0.15 * drift, 0.05)
     this.scene.rotation.x = lerp(this.scene.rotation.x, this.mouse.y * 0.08 * drift, 0.05)
+    const over = seg(p, 0.24, 0.34) * (1 - seg(p, 0.4, 0.48))
     this.camera.position.x = lerp(0, 0.6, outcome)
+    this.camera.position.y = over * 7
+    this.camera.lookAt(0, 0, 0)
     this.renderer.render(this.scene, this.camera)
   }
 

@@ -21,15 +21,16 @@ export default function Footer() {
           <ul>
             <li><Link to="/#approach">How we work</Link></li>
             <li><Link to="/#work">Selected work</Link></li>
-            <li><Link to="/#why">Why Shiva NCR</Link></li>
+            <li><Link to="/#about">About</Link></li>
             <li><Link to="/#contact">Contact</Link></li>
           </ul>
         </div>
         <div>
           <h2 className="footer-h">Contact</h2>
           <ul className="footer-contact">
+            <li>{site.contactPerson}</li>
             <li>{site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span className="ph">[Email — to be added]</span>}</li>
-            <li>{site.phone ? <a href={`tel:${site.phone}`}>{site.phone}</a> : <span className="ph">[Phone — to be added]</span>}</li>
+            <li>{site.phone ? <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a> : <span className="ph">[Phone — to be added]</span>}</li>
             <li>{site.whatsapp ? <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp us</a> : <span className="ph">[WhatsApp — to be added]</span>}</li>
             <li>{site.location}</li>
           </ul>
