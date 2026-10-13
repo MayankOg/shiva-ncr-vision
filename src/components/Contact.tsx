@@ -51,12 +51,9 @@ export default function Contact() {
             {site.whatsapp && <a className="btn btn-ghost-light" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer">Contact us on WhatsApp</a>}
           </div>
           <ul className="contact-list">
-            <li><span>What happens next</span>An initial conversation to understand your goals</li>
-            <li><span>Then</span>A short written recommendation and scope</li>
             <li><span>Contact</span>{site.contactPerson} · <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a></li>
-            <li><span>Location</span>{site.location}</li>
             <li><span>Email</span>{site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span className="ph">[Email — to be added]</span>}</li>
-            
+            <li><span>Location</span>{site.location}</li>
           </ul>
         </div>
         <form className="form" noValidate onSubmit={onSubmit} aria-describedby="form-status">
