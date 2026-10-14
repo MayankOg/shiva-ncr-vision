@@ -2,7 +2,7 @@
 export const site = {
   name: 'Shiva NCR Consultants',
   short: 'Shiva NCR',
-  url: 'https://408walebhai-cpu.github.io/shiva-ncr-site/',
+  url: import.meta.env.VITE_SITE_URL as string,
   tagline: 'One partner for technology, operations, and growth.',
   // Contact details — PLACEHOLDERS (never publish invented details)
   email: import.meta.env.VITE_CONTACT_EMAIL || 'shivancrconsultants1@gmail.com', // e.g. hello@yourdomain.com

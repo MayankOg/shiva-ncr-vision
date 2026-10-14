@@ -1,0 +1,58 @@
+name: Redesign — build (push) / deploy to Pages (manual)
+on:
+  push:
+    branches: [redesign]
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: 'Deploy this build to GitHub Pages (REPLACES the current live Pages site for this repo)'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: redesign-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  VITE_BASE: ${{ vars.VITE_BASE || '/shiva-ncr-vision/' }}
+  VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://mayankog.github.io/shiva-ncr-vision/' }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build
+        env:
+          VITE_FORM_ENDPOINT: ${{ vars.VITE_FORM_ENDPOINT }}
+          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
+          VITE_CONTACT_PHONE: ${{ vars.VITE_CONTACT_PHONE }}
+          VITE_WHATSAPP_NUMBER: ${{ vars.VITE_WHATSAPP_NUMBER }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shiva-ncr-redesign-dist
+          path: dist
+          include-hidden-files: true
+          retention-days: 14
+      - if: github.event_name == 'workflow_dispatch' && inputs.deploy
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
