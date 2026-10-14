@@ -15,9 +15,12 @@ permissions:
 concurrency:
   group: redesign-${{ github.ref }}
   cancel-in-progress: true
+# This repo's Pages site is served on the custom domain shivancrconsultants.com (mayankog.github.io/shiva-ncr-vision/ 301-redirects there),
+# so the site is built for the domain root. Override with repo variables VITE_BASE / VITE_SITE_URL / PAGES_CNAME if that changes.
 env:
-  VITE_BASE: ${{ vars.VITE_BASE || '/shiva-ncr-vision/' }}
-  VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://mayankog.github.io/shiva-ncr-vision/' }}
+  VITE_BASE: ${{ vars.VITE_BASE || '/' }}
+  VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://shivancrconsultants.com/' }}
+  PAGES_CNAME: ${{ vars.PAGES_CNAME || 'shivancrconsultants.com' }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,6 +39,9 @@ jobs:
           VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
           VITE_CONTACT_PHONE: ${{ vars.VITE_CONTACT_PHONE }}
           VITE_WHATSAPP_NUMBER: ${{ vars.VITE_WHATSAPP_NUMBER }}
+      - name: Keep custom domain file
+        if: env.PAGES_CNAME != ''
+        run: echo "$PAGES_CNAME" > dist/CNAME
       - uses: actions/upload-artifact@v4
         with:
           name: shiva-ncr-redesign-dist
