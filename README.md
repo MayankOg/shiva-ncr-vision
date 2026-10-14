@@ -1,73 +1,27 @@
-# Welcome to your Lovable project
+# Shiva NCR Consultants — website
 
-## Project info
+Vite + React + TypeScript, vanilla Three.js scene (`src/three/Ecosystem.ts`), GSAP ScrollTrigger.
 
-**URL**: https://lovable.dev/projects/e09a915e-8547-489c-be0e-7940b6fb9916
+- Content: `src/content/content.ts` (stages, services, work, process) and `src/content/site.ts` (contact/config)
+- Routes: `/`, `/services/:slug`; static route pages + 404 emitted by `scripts-postbuild.mjs`
+- Fallbacks: `prefers-reduced-motion` renders a static final scene; no WebGL (or `?nowebgl`) shows an SVG illustration
 
-## How can I edit this code?
+## Commands
+`npm run dev` · `npm run build` · `npm run lint` · `npm run typecheck`
 
-There are several ways of editing your application.
+## Integrations (unconfigured)
+Set as GitHub Actions repository **variables** (or `.env`, see `.env.example`):
+- `VITE_FORM_ENDPOINT` — JSON POST endpoint (e.g. Formspree). Without it, the form validates but clearly tells the visitor it was **not sent**.
+- `VITE_CONTACT_EMAIL`, `VITE_CONTACT_PHONE`, `VITE_WHATSAPP_NUMBER` — shown as marked placeholders until set.
 
-**Use Lovable**
+## Base path & deployment
+- `VITE_BASE` (or `BASE_PATH`) sets the base path; default `/shiva-ncr-vision/`. Use `/` for a custom domain.
+- `VITE_SITE_URL` sets the absolute URL for canonical/OG/sitemap/robots; default `https://mayankog.github.io<base>`.
+- `.github/workflows/deploy-redesign.yml`: push to `redesign` = typecheck + lint + build + artifact. Deploy to Pages only via **Run workflow** with `deploy` ticked (replaces the live Pages site).
+- `.github/workflows/deploy.yml` only runs in `408walebhai-cpu/shiva-ncr-site` (preview).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e09a915e-8547-489c-be0e-7940b6fb9916) and start prompting.
+## Vercel (shivancrconsultants.com)
+`vercel.json` sets framework Vite, `npm run build`, output `dist`. On Vercel (`VERCEL` env set) the base defaults to `/` and the site URL to `https://shivancrconsultants.com/`. Service pages are emitted as static `services/<slug>/index.html`; unknown paths get `404.html`.
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/e09a915e-8547-489c-be0e-7940b6fb9916) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Placeholders to replace
+Testimonials (`testimonials` array in `src/content/content.ts`; section + nav link hidden while empty), contact details, WhatsApp number, OG image (currently a hero screenshot), base path via `VITE_BASE` when moving to a custom domain.
